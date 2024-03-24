@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2013 Nyr. Released under the MIT License.
 
-read -p "VPN root IP: " vpn_root_ip
+# read -p "VPN root IP: " vpn_root_ip
 
 # Detect Debian users running the script with "sh" instead of bash
 if readlink /proc/$$/exe | grep -q "dash"; then
@@ -180,6 +180,9 @@ if [[ ! -e /etc/openvpn/server/server.conf ]]; then
 		protocol=tcp
 		;;
 	esac
+	echo 
+	read -p "Which IP address should be used for VPN network? [10.8.0.0] " vpn_root_ip
+	[[ -z "$vpn_root_ip" ]] && vpn_root_ip="10.8.0.0"
 	echo
 	echo "What port should OpenVPN listen to?"
 	read -p "Port [1194]: " port
